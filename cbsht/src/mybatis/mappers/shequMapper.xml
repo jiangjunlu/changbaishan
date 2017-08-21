@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="shequMapper">
+	<select id="queryList" parameterType="map" resultType="map">
+		select * from shequ
+		<where>
+			shequ_flag>0
+			<if test="shequId != null">
+				and shequ_id=#{shequId}
+			</if>
+			<if test="lshequname != null">
+				and shequ_name like #{lshequname}
+			</if>
+		</where>
+		<if test="limitBegin != null">
+			<if test="limitSize !=null">
+				limit #{limitBegin},#{limitSize}
+			</if>
+			<if test="limitSize ==null">
+				limit #{limitBegin},10
+			</if>
+		</if>
+	</select>
+	<select id="searchShequ" parameterType="map" resultType="map">
+		select *
+		from shequ
+		<where>
+			<if test="shequFlag!=null">
+				and shequ_flag=#{shequFlag}
+			</if>
+			<if test="shequFlag==null">
+				and shequ_flag=1
+			</if>
+			<if test="shequName != null">
+					and (shequ_name like #{shequName})
+			</if>
+		</where>
+	</select>
+	<update id="updateSheQu" parameterType="map">
+		update shequ
+		<set>
+			<if test="shequName!=null">
+				shequ_name = #{shequName},
+			</if>
+			<if test="shequJianJie!=null">
+				shequ_jianjie = #{shequJianJie},
+			</if>
+			<if test="shequFlag!=null">
+				shequ_flag = #{shequFlag},
+			</if>
+		</set>
+		where shequ_id=#{shequId}
+	</update>
+	<insert id="insertSheQu">
+		insert into shequ
+		(shequ_name,shequ_jianjie)
+		values
+		(#{shequName},#{shequJianJie})
+	</insert>
+	<delete id="deleteSheQu">
+		delete from shequ where shequ_id=#{shequId}
+	</delete>
+	<select id="count" parameterType="map" resultType="map">
+		select
+		count(*) counter from shequ where shequ_flag>0
+		<if test="shequName!=null">
+			and shequ_name=#{shequName}
+		</if>
+	</select>
+</mapper>

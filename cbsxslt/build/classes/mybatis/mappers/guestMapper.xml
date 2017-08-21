@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="guestMapper">
+<!-- 查询所有嘉宾 -->
+	<select id="queryGuest" parameterType="map" resultType="map">
+		select jiabin_id,jiabin_name,jiabin_lingyu,jiabin_jigou,jiabin_jianjie,jiabin_canyuhuodong
+			   jiabin_zhicheng,jiabin_zhiwu,jiabin_zhaopian
+		as	   jiabin_id,jiabin_name,jiabin_lingyu,jiabin_jigou,jiabin_jianjie,jiabin_canyuhuodong
+			   jiabin_zhicheng,jiabin_zhiwu,jiabin_zhaopian
+		from   jiabin
+		<where>
+			jiabin_flag=1
+			<if test="jiabinId != null">
+				and jiabin_id=#{jiabinId}
+			</if>
+		</where>
+	</select>
+<!-- 删除嘉宾 -->
+	<update id="deleteGuest" parameterType="map"> 
+		update jiabin set jiabin_flag=0 where id=#{jiabinId}
+	</update>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="participantMapper">
+<!-- 添加参会人员 -->
+	<insert id="saveParticipant" parameterType="map" >
+		insert into renyuan
+			<set>
+				renyuan_id=renyuan_id,huiyi_id=#{huiyiId},renyuan_flag=1,renyuan_createtime=now(),
+				<if test="renyuanName!=null">
+					renyuan_name=#{renyuanName},
+				</if>
+				<if test="renyuanEmail!=null">
+					renyuan_email=#{renyuanEmail},
+				</if>
+				<if test="renyuanDianhua!=null">
+					renyuan_dianhua=#{renyuanDianhua},
+				</if>
+				<if test="renyuanBeizhu!=null">
+					renyuan_beizhu=#{renyuanBeizhu},
+				</if>
+				<if test="beginDate!=null">
+					kaishi_date=#{beginDate},
+				</if>
+				<if test="endDate!=null">
+					jieshu_date=#{endDate},
+				</if>
+			</set>
+	</insert>
+	
+	
+<!-- 修改参会人员状态 -->
+	<update id="updateStatus">
+		update renyuan set renyuan_flag=#{renyuanFlag} where renyuan_email=#{renyuanEmail} and huiyi_id=#{huiyiId}
+	</update>
+	
+	<!-- 查询参会的注册人员 -->
+	<select id="queryParticipant" parameterType="map" resultType="map">
+		select renyuan_id,renyuan_name,huiyi_id
+		from renyuan
+		<where>
+			<if test="renyuanFlag != null">
+				and renyuan_flag=#{renyuanFlag} 
+			</if>
+			<if test="huiyiId != null">
+				and huiyi_id=#{huiyiId}
+			</if>
+		</where>
+	</select>
+</mapper>

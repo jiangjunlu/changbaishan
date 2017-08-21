@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="huiyiMapper">
+	<select id="queryList" parameterType="map" resultType="map">
+		select * from huiyi
+		<where>
+			huiyi_flag>0 and fk_user_id=#{fk_user_id}
+			<if test="huiyiId != null">
+				and huiyi_id=#{huiyiId}
+			</if>
+			
+			<if test="lzhongwenName != null">
+				and (zhongwen_name like #{lzhongwenName}
+				<if test="lyingwenName != null">
+					or (yingwen_name like #{lyingwenName})
+				</if>
+				)
+			</if>
+		</where>
+		<if test="limitBegin != null">
+			<if test="limitSize !=null">
+				limit #{limitBegin},#{limitSize}
+			</if>
+			<if test="limitSize ==null">
+				limit #{limitBegin},10
+			</if>
+		</if>
+	</select>
+	
+	<select id="queryRList" parameterType="map" resultType="map">
+		select * from huiyi
+		<where>
+			huiyi_flag>0 
+			<if test="huiyiId != null">
+				and huiyi_id=#{huiyiId}
+			</if>
+			
+			<if test="lzhongwenName != null">
+				and (zhongwen_name like #{lzhongwenName}
+				<if test="lyingwenName != null">
+					or (yingwen_name like #{lyingwenName})
+				</if>
+				)
+			</if>
+		</where>
+		<if test="limitBegin != null">
+			<if test="limitSize !=null">
+				limit #{limitBegin},#{limitSize}
+			</if>
+			<if test="limitSize ==null">
+				limit #{limitBegin},10
+			</if>
+		</if>
+	</select>
+	
+	
+	<select id="searchHuiyi" parameterType="map" resultType="map">
+		select *
+		from huiyi
+		<where>
+			<if test="huiyiFlag!=null">
+				and huiyi_flag=#{huiyiFlag}
+			</if>
+			<if test="huiyiFlag==null">
+				and huiyi_flag=1
+			</if>
+			<if test="zhongwenName != null">
+				and (zhongwen_name like #{zhongwenName}
+				<if test="yingwenName != null">
+					or (yingwen_name like #{yingwenName})
+				</if>
+				)
+			</if>
+			<if test="yingwenName != null  and zhongwenName==null">
+				and (yingwen_name like #{yingwenName}
+				<if test="zhongwenName != null">
+					or (zhongwen_name like #{zhongwenName})
+				</if>
+				)
+			</if>
+		</where>
+	</select>
+	
+	<update id="updateHuiyi" parameterType="map">
+		update huiyi
+		<set>
+			<if test="huiyiFlag!=null">
+				huiyi_flag = #{huiyiFlag},
+			</if>
+			<if test="zhongwenName!=null">
+				zhongwen_name = #{zhongwenName},
+			</if>
+			<if test="yingwenName!=null">
+				yingwen_name = #{yingwenName},
+			</if>
+			<if test="zhaokaiTime!=null">
+				zhaokai_time=#{zhaokaiTime},
+			</if>
+			<if test="jieshuTime!=null">
+				zhaokai_time=#{jieshuTime},
+			</if>
+			<if test="huiyiNeirong != null">
+				huiyi_neirong=#{huiyiNeirong},
+			</if>
+			<if test="huiyiZhaiyao != null">
+				huiyi_zhaiyao=#{huiyiZhaiyao},
+			</if>
+			<if test="huiyiDidian != null">
+				huiyi_didian=#{huiyiDidian},
+			</if>
+			<if test="huiyiZhuangtai != null">
+				huiyi_zhuangtai=#{huiyiZhuangtai},
+			</if>
+			<if test="huiyiGuanjianci != null">
+				huiyi_guanjianci=#{huiyiGuanjianci},
+			</if>
+			<if test="huiyiZhubanfang != null">
+				huiyi_zhubanfang=#{huiyiZhubanfang},
+			</if>
+			<if test="huiyiLaibanfang != null">
+				huiyi_laibanfang=#{huiyiLaibanfang},
+			</if>
+			<if test="huiyiXiebanfang != null">
+				huiyi_xiebanfang=#{huiyiXiebanfang},
+			</if>
+			<if test="huiyiXinwen != null">
+				huiyi_xinwen=#{huiyiXinwen},
+			</if>
+		</set>
+		where huiyi_id=#{huiyiId}
+	</update>
+	<insert id="insertHuiyi">
+		insert into huiyi
+		(zhongwen_name,yingwen_name,zhaokai_time,jieshu_time,huiyi_neirong,huiyi_zhaiyao,huiyi_didian,huiyi_guanjianci,huiyi_zhubanfang,huiyi_xiebanfang,huiyi_laibanfang,huiyi_xinwen,fk_user_id)
+		values
+		(#{zhongwenName},#{yingwenName},#{zhaokaiTime},#{jieshuTime},#{huiyiNeirong},#{huiyiZhaiyao},#{huiyiDidian},#{huiyiGuanjianci},#{huiyiZhubanfang},#{huiyiXiebanfang},#{huiyiLaibanfang},#{huiyiXinwen},#{userid})
+	</insert>
+	<delete id="deleteHuiyi">
+		delete from huiyi where huiyi_id=#{huiyiId}
+	</delete>
+	<select id="count" parameterType="map" resultType="map">
+		select
+		count(*) counter from huiyi where huiyi_flag>0
+		<if test="zhongwenName!=null">
+			and zhongwen_name = #{zhongwenName}
+		</if>
+		<if test="yingwenName!=null">
+			and yingwen_name = #{yingwenName}
+		</if>
+	</select>
+	<select id="countRenyuan" parameterType="map" resultType="map">
+		select
+		count(*) counter from renyuan where renyuan_flag>0
+		<if test="huiyiId!=null">
+			and huiyi_id = #{huiyiId}
+		</if>
+	</select>
+	<select id="queryRenyuan" parameterType="map" resultType="map">
+		select * from renyuan
+		<where>
+			<if test="renyuanFlag!=null">
+			    and	renyuan_flag=#{reyuanFlag}
+			</if>
+			<if test="renyuanFlag==null">
+				and renyuan_flag>0
+			</if>
+		
+			<if test="huiyiId != null">
+				and huiyi_id=#{huiyiId}
+			</if>
+		</where>
+	</select>
+	
+	
+	<!-- 
+	
+		更改会议 审核状态
+		
+		xpp
+	
+	  -->
+	<update id="reviewedHuiYi" parameterType="java.util.Map">
+		update huiyi set huiyi_review=huiyi_review*(-1)+1 where
+		<if test="huiyi_id!=null and huiyi_id!=''">
+		 huiyi_id=#{huiyi_id} 
+		 </if>
+	</update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="jigouMapper">
+	<select id="queryList" parameterType="map" resultType="map">
+		select * from jigou
+		<where>
+			jigou_flag>0
+			<if test="jigouId!= null">
+				and jigou_id=#{jigouId}
+			</if>
+			<if test="ljigouName!= null">
+				and jigou_name like #{ljigouName}
+			</if>
+		</where>
+		<if test="limitBegin != null">
+			<if test="limitSize !=null">
+				limit #{limitBegin},#{limitSize}
+			</if>
+			<if test="limitSize ==null">
+				limit #{limitBegin},10
+			</if>
+		</if>
+	</select>
+	<select id="searchJigou" parameterType="map" resultType="map">
+		select *
+		from jigou
+		<where>
+			<if test="jigouFlag!=null">
+				and jigou_flag=#{jigouFlag}
+			</if>
+			<if test="jigouFlag==null">
+				and jigou_flag=1
+			</if>
+			<if test="jigouName != null">
+				and (jigou_name like #{jigouName}
+				)
+			</if>
+		</where>
+	</select>
+	<update id="updateJigou" parameterType="map">
+		update jigou
+		<set>
+			<if test="jigouFlag!=null">
+				jigou_flag = #{jigouFlag},
+			</if>
+			<if test="jigouName!=null">
+				jigou_name = #{jigouName},
+			</if>
+			<if test="jigouJieshao!=null">
+				jigou_jieshao=#{jigouJieshao},
+			</if>
+			<if test="jigouWangzhi!=null">
+				jigou_wangzhi=#{jigouWangzhi},
+			</if>
+			<if test="jigouBeizhu!=null">
+				jigou_beizhu=#{jigouBeizhu},
+			</if>
+			<if test="jigouTubiao!= null">
+				jigou_tubiao=#{jigouTubiao},
+			</if>
+			<!-- <if test="jigouJuese!= null"> jigou_juese=#{jigouJuese}, </if> -->
+		</set>
+		where jigou_id=#{jigouId}
+	</update>
+	<insert id="insertJigou">
+		insert into jigou
+		(jigou_name,jigou_jieshao,jigou_wangzhi,jigou_beizhu,jigou_tubiao)
+		values
+		(
+		#{jigouName},#{jigouJieshao},#{jigouWangzhi},#{jigouBeizhu},#{jigouTubiao})
+	</insert>
+	<delete id="deleteJigou">
+		delete from jigou where jigou_id=#{jigouId}
+	</delete>
+	<select id="count" parameterType="map" resultType="map">
+		select count(*) counter from jigou where jigou_flag>0
+		<if test="jigouName!=null">
+			and jigou_name=#{jigouName}
+		</if>
+	</select>
+</mapper>

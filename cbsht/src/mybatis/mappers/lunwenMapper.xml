@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="lunwenMapper">
+	<select id="queryList" parameterType="map" resultType="map">
+		select * from lunwen
+		<where>
+			lunwen_flag>0
+			<if test="lunwenId != null">
+				and lunwen_id=#{lunwenId}
+			</if>
+			<if test="llunwenName!=null">
+			    and lunwen_name like #{llunwenName}
+			</if>
+		</where>
+		<if test="limitBegin != null">
+			<if test="limitSize !=null">
+				limit #{limitBegin},#{limitSize}
+			</if>
+			<if test="limitSize ==null">
+				limit #{limitBegin},10
+			</if>
+		</if>
+	</select>
+	<select id="searchLunwen" parameterType="map" resultType="map">
+		select *
+		from lunwen
+		<where>
+			<if test="lunwenName != null">
+				and (lunwen_name like #{lunwenName})
+			</if>
+		</where>
+	</select>
+	<update id="updateLunwen" parameterType="map" >
+		update lunwen 
+		<set>
+			<if test="lunwenFlag!=null">
+				lunwen_flag = #{lunwenFlag},
+			</if>
+			<if test="lunwenLeibie!=null">
+				lunwen_leibie = #{lunwenLeibie},
+			</if>
+			<if test="lunwenGuanjianci!=null">
+				lunwen_guanjianci= #{lunwenGuanjianci},
+			</if>
+			<if test="lunwenZhaiyao!=null">
+				lunwen_zhaiyao=#{lunwenZhaiyao},
+			</if>
+			<if test="lunwenSavepath!=null">
+				lunwen_savepath=#{lunwenSavepath},
+			</if>
+			<if test="lunwenChuliZhuangtai != null">
+				lunwen_neirong=#{lunwenChuliZhuangtai},
+			</if>
+		<if test="lunwenNeirong != null">
+				lunwen_neirong=#{lunwenNeirong},
+			</if>
+		
+		</set>
+		where lunwen_id=#{lunwenId}
+	</update>
+	<select id="queryItsPart" parameterType="map" resultType="map">
+		select * from shequ,shequ_lunwen
+		where shequ.shequ_id=shequ_lunwen.shequ_id and shequ_lunwen.lunwen_id=#{lunwenId}
+	</select>
+	<insert id="insertLunwen">
+		insert into lunwen
+		(lunwen_id,lunwen_leibie,lunwen_guanjianci,lunwen_zhaiyao,lunwen_neirong)
+		values 
+		(#{lunwenId},#{lunwenLeibie},#{lunwenGuanjianci},#{lunwenZhaiyao},#{lunwenNeirong})
+		</insert>
+	<delete id="deleteLunwen">
+		delete from lunwen where lunwen_id=#{lunwenId}
+	</delete>
+	<select id="count"  parameterType="map" resultType="map">
+		select count(*) counter from lunwen where lunwen_flag>0
+		<if test="lunwenName != null">
+				and lunwen_name like #{lunwenName}
+		</if>
+	</select>
+	<select id="queryMaxId" resultType="map">
+		select max(lunwen_id) as id from lunwen
+	</select>
+	<delete id="deleteRelation" parameterType="map">
+		delete from shequ_lunwen where lunwen_id=#{lunwenId}
+	</delete>
+	<insert id="insertRelation">
+		insert into shequ_lunwen values (#{shequId},#{lunwenId})
+	</insert>
+</mapper>

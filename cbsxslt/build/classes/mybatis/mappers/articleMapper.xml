@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="articleMapper">
+	<select id="queryArticle" parameterType="map" resultType="map">
+		select * from lunwen,shequ_lunwen
+		where lunwen.lunwen_id=shequ_lunwen.lunwen_id
+		<if test="lunwenId !=null">
+			and lunwen.lunwen_id=#{lunwenId}
+		</if>
+		<if test="shequId !=null">
+			and shequ_lunwen.shequ_id=#{shequId}
+		</if>
+	</select>
+	<!-- 查询社区 -->
+	<select id="queryPart" parameterType="map" resultType="map">
+		select * from shequ
+		<where>
+			<if  test="shequFlag != null">
+				and shequ_flag=#{shequFlag}
+			</if>
+			<if  test="shequFlag == null">
+				and shequ_flag=1
+			</if>
+			<if  test="shequId != null">
+				and shequ_id=#{shequId}
+			</if>
+		</where>
+	</select>
+</mapper>

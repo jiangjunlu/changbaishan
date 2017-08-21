@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="userMapper">
+	<select id="queryList" parameterType="map" resultType="map">
+		select * from user
+		<where>
+			<if test="username != null">
+				and username=#{username}
+			</if>
+			<if test="lusername != null">
+				and username like #{lusername}
+			</if>
+			<if test="password != null">
+				and password=#{password}
+			</if>
+			<if test="userFlag != null">
+				and user_flag=#{userFlag}
+			</if>
+			<if test="userFlag == null">
+				and user_flag =1 
+			</if>
+			
+		</where>
+		<if test="limitBegin != null">
+			<if test="limitSize !=null">
+				limit #{limitBegin},#{limitSize}
+			</if>
+			<if test="limitSize ==null">
+				limit #{limitBegin},10
+			</if>
+		</if>
+	</select>
+	<select id="searchuser" parameterType="map" resultType="map">
+		select *
+		from user
+		<where>
+			<if test="userFlag!=null">
+				and user_flag=#{userFlag}
+			</if>
+			<if test="userFlag==null">
+				and user_flag=1
+			</if>
+			<if test="username != null">
+				and (username like #{username})
+			</if>
+		</where>
+	</select>
+	<update id="updateUser" parameterType="map">
+		update user
+		<set>
+			<if test="userFlag!=null">
+				user_flag=#{userFlag}
+			</if>
+			<if test="password!=null">
+				password = #{password},
+			</if>
+			<if test="phone!=null">
+				phone = #{phone},
+			</if>
+			<if test="name!=null">
+				name = #{name},
+			</if>
+		</set>
+	where userid=#{userId}
+	</update>
+	<insert id="insertUser">
+		insert into user
+		(username,password,name,phone)
+		values
+		(#{username},#{password},#{name},#{phone})
+	</insert>
+	<delete id="deleteUser">
+		delete from user where userid=#{userid}
+	</delete>
+	<select id="count" parameterType="map" resultType="map">
+		select count(*) counter from user
+		<where>
+			<if test="userFlag!=null">
+				user_flag=#{userFlag}
+			</if>
+			<if test="userFlag==null">
+				user_flag=1
+			</if>
+			<if test="username!=null">
+				and username=#{username}
+			</if>
+		</where>
+	</select>
+</mapper>

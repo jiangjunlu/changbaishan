@@ -1,0 +1,45 @@
+
+.whole
+{
+	width: 100%;
+	height: 100%;
+	padding-bottom: 20px; 
+	z-index: -1;
+}
+.ztwk
+{
+	width: 800px;
+	height: 100%;
+	text-align: center;
+	margin: 50px auto 0;
+	/* background: #fff; */
+
+/* 	background: #000; */
+}
+.ztwk-p1
+{
+	font-size: 40px;
+	color: #38e270;
+
+}
+.other
+{
+	width: 700px;
+	margin: 50px 50px 0 50px;
+	text-align: center;
+}
+.other-every
+{
+	margin-top: 20px;
+}
+.other-p1
+{
+	color: #f2523b;
+	font-size: 25px;
+}
+.other-p2
+{
+	color: #fff;
+	font-size: 20px;
+	margin-top: 10px;
+}

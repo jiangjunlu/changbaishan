@@ -1,0 +1,45 @@
+﻿
+        div#div_ncp {
+            display: none;
+            text-align: center;
+        }
+
+       div#div_shiwu{
+            display: none;
+            text-align: center;
+        }
+              div#div_app{
+            display: none;
+            text-align: center;
+        }
+                        div#div_nyxx {
+            display: none;
+            text-align: center;
+        }
+        div#div_gg {
+            display: none;
+            text-align: center;
+        }
+        div#div_yhgl {
+            display: none;
+            text-align: center;
+        }
+        button.biaoti {
+            font-size: 16px;
+            font-family: "微软雅黑";
+            text-align: center;
+            width: 100%;
+            background-color:#5c90bb;
+        }
+
+        div p {
+            cursor: pointer;
+            position: relative;
+            top: -20px;
+            left: -20px;
+        }
+
+        p img {
+            position: relative;
+            top: +10px;
+        }

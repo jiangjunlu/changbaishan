@@ -1,0 +1,376 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css" />
+<link rel="icon" href="https://o1aqprei7.qnssl.com/favicon.ico">
+<link type="text/css" rel="stylesheet" media="all"
+	href="https://o1aqprei7.qnssl.com/assets/css/hb_style.css?d63f0748b8f3671ac113">
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/layer/layer/layer.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/amazeui.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/amazeui.flat.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/amazeui.flat.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/amazeui.min.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/app.css" />
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/amazeui.ie8polyfill.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/amazeui.ie8polyfill.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/amazeui.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/amazeui.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/amazeui.widgets.helper.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/amazeui.widgets.helper.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/app.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/handlebars.min.js"></script>
+<style type="text/css">
+.hb_wrap .hb_workspaces {
+	top: -316px;
+}
+
+.hb_wrap_bg {
+	height: 782px;
+}
+
+.hb_wrap_workspaces .hb_wrap .hb_workspaces {
+	top: 0px;
+	max-height: 782px;
+}
+
+.hb_wrap_workspaces .hb_wrap .switch_notice {
+	top: 342px;
+}
+
+.hb_wrap_workspaces .hb_wrap .hb_header {
+	top: 316px;
+}
+
+.hb_wrap_workspaces .hb_wrap .hb_main {
+	margin-top: 396px;
+}
+
+.hb_wrap_workspaces .hb_wrap .hb_app {
+	top: 396px;
+}
+
+.hb_wrap .hb_app {
+	min-height: 702px;
+}
+
+.hb_nav_setting .hb_wrap_workspaces .hb_wrap .hb_setting {
+	margin-top: 396px;
+}
+
+.hb_wrap .hb_setting {
+	height: auto !important;
+	height: 702px;
+	min-height: 702px;
+}
+
+.mod_custom .custom_options {
+	height: 1000px;
+}
+
+.scroll { /* height: 682px; */
+	height: 520px;
+}
+
+.mod_custom .custom_specific .scroll {
+	height: 594px;
+}
+
+.hb_item_side .side_content {
+	height: 590px;
+}
+
+.hb_item_side.h_reply .side_content {
+	height: 442px;
+}
+
+.hb_item_side.h_comment .side_content {
+	height: 467px;
+}
+
+.hb_item_side.h_disable .side_content {
+	height: 642px;
+}
+
+.hb_doc_scroll,.container_scroll {
+	height: 694px;
+}
+
+.hb_market .market_main,.hb_market .market_side,.hb_market .market_appitem,.hb_market .market_body
+	{
+	height: 637px;
+}
+
+.popover.in {
+	display: block;
+	width: 190px;
+	height: auto;
+	left: 780px;
+	top: 24px;
+}
+
+.orderBy {
+	display: none;
+	width: 190px;
+	height: auto;
+	left: 920px;
+	top: 24px;
+}
+
+.btn_orderBy {
+	cursor: pointer;
+}
+
+.mod_bulkoperation {
+	display: none;
+}
+
+.tbl_height {
+	width: 100%;
+	height: 582px;
+	overflow: scroll;
+}
+
+.tbl,.tbl th,.tbl td {
+	border: 1px solid #eeecec;
+}
+
+.tbl th,.tbl td {
+	padding: 0.5%;
+	text-align: center;
+}
+
+.tbl {
+	width: 1600px;
+	border-left: none;
+	border-right: none;
+}
+
+.tbl tr:hover,.tbl tr:nth-child(2n):hover {
+	cursor: pointer;
+	background-color: #f2f6ff;
+}
+
+.tbl tr:nth-child(2n) {
+	background-color: #f6f7f8;
+}
+
+.tbl tr th:first-child,.tbl tr td:first-child {
+	border-left: none;
+}
+
+.tbl tr th:first-child,.tbl tr td:last-child {
+	border-right: none;
+}
+
+.item_view {
+	margin-left: 10px;
+}
+
+.view_mark_ul {
+	display: none;
+}
+
+}
+.footer {
+	position: fixed;
+	bottom: 0px;
+	background: #f0f9fd;
+	width: 100%;
+	height: 35px;
+	border-top: solid 1px #c2d2d7;
+	line-height: 30px;
+	color: #98a4a9;
+}
+</style>
+<script type="text/javascript">
+	function select(divID) {
+		var ulid = divID.substring(0, divID.length - 2);//下拉菜单
+		var str = '#' + ulid;
+		$(str).toggle();
+
+	}
+
+	function turnHtml(url) {
+		var strurl = url + '.jsp';
+		$("#right-iframe").attr("src", strurl);
+		$("#right-iframe").reload();
+	}
+	function turnAction(url) {
+		var strurl = url ;
+		$("#right-iframe").attr("src", strurl);
+		$("#right-iframe").reload();
+	}
+</script>
+<script type="text/javascript">
+	$(function() {
+		$(".view_mark_ul li").click(
+				function() {
+					$(this).css({
+						background : "#add8e6"
+					}).siblings().css("background", "");
+					var $this = $(this);
+					$(".view_mark_ul:visible").find('li').not($this).css(
+							"background", "");
+				});
+	});
+</script>
+<script type="text/javascript">
+	$(function() {
+		$(".view_mark_ul li").click(
+				function() {
+					$(this).css({
+						background : "#add8e6"
+					}).siblings().css("background", "");
+					var $this = $(this);
+					$(".view_mark_ul:visible").find('li').not($this).css(
+							"background", "");
+				});
+	});
+</script>
+</head>
+<body class="hb_nav_app" style="overflow-y: hidden;">
+	<!-- style="overflow-y: hidden;" -->
+	<div id="root">
+		<div class="hb_wrap">
+			<!--<div>
+			<div>-->
+			<div class="hb_workspaces">
+				<div class="workspaces_h">
+					<span>工作区</span>
+					<p>和小伙伴一起共享数据的地方</p>
+				</div>
+				<div class="workspaces_c cl">
+					<ul class="mod_workspaces cl">
+						<li>
+							<div class="mod_cover c_business"
+								style="background-color: #79BEAF;">
+								<span class="bl"></span><span class="br"></span>
+								<h3 class="" style="color: #FFFFFF; background-color: #79BEAF;">长白山学术论坛</h3>
+								<img
+									src="https://oss-cn-hangzhou.aliyuncs.com/hb-v4-public/space_cover/1045757/0"
+									class="photo">
+							</div>
+						</li>
+						<li class="workspace_add">
+							<div>
+								<i></i><span>创建工作区</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="switch_workspaces undefined">
+				<i title="选择工作区"></i>
+			</div>
+			<div class="hb_header undefined">
+				<div class="set cl">
+					<em class="pipe"></em>
+					<span class="mod_avatar avt_small" title="长白山学术论坛">
+						<img src="https://oss-cn-hangzhou.aliyuncs.com/hb-v4-public/user_avatar/1311437/32"
+						class="avatar" draggable="false">
+						<span>${user.name}-${user.username }</span>
+						<a href="<%=request.getContextPath()%>/user/exit">退出登录</a>
+					</span>
+					<a href="###" style="display: none;">hidden</a>
+					<a href="###" style="display: none;">hidden</a>
+					<a href="###" style="display: none;">hidden</a>
+					<a href="###" style="display: none;">解绑</a><a href="###" style="display: none;">解绑</a>
+					<a href="###" style="display: none;">解绑</a>
+				</div>
+				<div class="nav nav_second nav_back">
+					<h1>
+						<span><cite>长白山学术论坛</cite></span>
+					</h1>
+					<h2>
+						<span><cite>后台信息管理服务中心</cite></span>
+					</h2>
+				</div>
+			</div>
+			<!--</div>-->
+			<!--<div>-->
+			<div class="hb_app">
+				<div class="hb_frame cl">
+					<div class="hb_row cl ">
+						<div class="col_2">
+							<div class="fixed_custom">
+								<div class="mod_custom hb_condititchStatement.resolve(SwitchStatement.java:156)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:350)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:137)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:304)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:375)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.FunctionExpression.resolveType(FunctionExpression.java:58)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.ObjectLiteralField.resolveType(ObjectLiteralField.java:70)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.ObjectLiteral.resolveType(ObjectLiteral.java:80)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.Assignment.resolveType(Assignment.java:160)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.Expression.resolve(Expression.java:477)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:350)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:137)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:304)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:375)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.FunctionExpression.resolveType(FunctionExpression.java:58)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.ArrayInitializer.resolveType(ArrayInitializer.java:74)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:279)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.ReturnStatement.resolve(ReturnStatement.java:146)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:350)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:137)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:304)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:375)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.FunctionExpression.resolveType(FunctionExpression.java:58)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.Expression.resolve(Expression.java:477)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:256)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.Expression.resolve(Expression.java:477)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:394)
+	at org.eclipse.wst.jsdt.internal.compiler.Compiler.process(Compiler.java:604)
+	at org.eclipse.wst.jsdt.internal.compiler.Compiler.compile(Compiler.java:356)
+	at org.eclipse.wst.jsdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:288)
+	at org.eclipse.wst.jsdt.internal.core.builder.BatchImageBuilder.compile(BatchImageBuilder.java:86)
+	at org.eclipse.wst.jsdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:227)
+	at org.eclipse.wst.jsdt.internal.core.builder.BatchImageBuilder.build(BatchImageBuilder.java:58)
+	at org.eclipse.wst.jsdt.internal.core.builder.JavaBuilder.buildAll(JavaBuilder.java:291)
+	at org.eclipse.wst.jsdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:199)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:728)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:199)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:239)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:292)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:295)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:351)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:374)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.wst.jsdt.core 2 2 2017-02-21 11:03:43.317
+!MESSAGE There should only ever be one match for a constructor search but found 2 when looking for n. Using the first match.
+
+!ENTRY org.eclipse.wst.jsdt.core 2 2 2017-02-21 11:03:43.317
+!MESSAGE There should only ever be one match for a constructor search but found 2 when looking for n. Using the first match.
+
+!ENTRY org.eclipse.wst.jsdt.core 2 2 2017-02-21 11:03:43.319
+!MESSAGE There should only ever be one match for a constructor search but found 2 when looking for p. Using the first match.
+
+!ENTRY org.eclipse.wst.jsdt.core 2 2 2017-02-21 11:03:43.319
+!MESSAGE There should only ever be one match for a constructor search but found 2 when looking for n. Using the first match.
+
+!ENTRY org.eclipse.wst.jsdt.core 2 2 2017-02-21 11:03:43.319
+!MESSAGE There should only ever be one match for a constructor search but found 2 when looking for n. Using the first match.
+
+!ENTRY org.eclipse.core.resources 4 2 2017-02-21 11:03:43.616
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException: 43
+	at org.eclipse.wst.jsdt.internal.compiler.ast.CaseStatement.resolveCase(CaseStatement.java:82)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.SwitchStatement.resolve(SwitchStatement.java:156)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:350)
+	at org.eclipse.wst.jsdt.internal.compiler.ast.MethodDe

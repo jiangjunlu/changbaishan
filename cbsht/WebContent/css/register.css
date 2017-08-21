@@ -1,0 +1,81 @@
+body{
+			margin:0px;
+			padding: 0px;
+			background: url(../img/green.jpg) no-repeat;
+			background-size:cover;
+		}
+			.first{
+				position: relative;
+				width: 50%;
+				top: 80px;
+				margin:0 auto;
+				height: 470px;
+				background-color:#F1FBFD;
+				border: 3px solid aliceblue;
+				border-radius: 15px;
+				opacity: 0.7;
+			}
+			.title{
+				position: absolute;
+				top: 20px;
+				margin-left: 80px;
+				font-size: 35px;
+				font-family: "楷体","楷体_GB2312";  
+			}
+			.form1{
+				position: absolute;
+				top: 80px;
+				left: 40px;
+				/*margin:auto;*/
+				height: 320px;
+				/*background:#FF0000;*/
+			}
+			
+			.form1_list{
+				width: 580px;
+				height: 36px;
+				margin-top:20px;
+				margin-bottom: 20px;
+				/*margin-left: 6px;*/
+				/*background: yellow;*/
+			}
+			.label{
+				position: absolute;
+				margin-top: 10px;
+				margin-right: 10px;
+				font-size: 16px;
+				line-height: 16px;
+			}
+			.text{
+				position: absolute;
+				left: 130px;
+				margin-top: 2px;
+				padding-left: 7px;
+				width: 250px;
+				height:26px;
+			/*	background: blue;*/
+				
+			}
+			.button{
+				position: absolute;
+				left: 240px;
+				margin-top: -5px;
+				width: 137px;
+				height: 35px;
+				font-size: 14px;
+				font-weight: bold;
+				color: #fff;
+				cursor: pointer;
+				background: url(../img/btnbg.png) no-repeat;
+				border: 0;
+			}
+			.span{
+				position: absolute;
+				margin-top: 3px;
+				left:393px;
+				width: 160px;
+				height:18px;
+				font-size: 12px;
+				padding-top: 12px;
+				/*background: gray;*/
+			}

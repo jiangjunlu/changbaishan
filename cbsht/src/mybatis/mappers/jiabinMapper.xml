@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="jiabinMapper">
+	<select id="queryList" parameterType="map" resultType="map">
+		select * from jiabin
+		<where>
+			jiabin_flag>0
+			<if test="jiabinId != null">
+				and jiabin_id=#{jiabinId}
+			</if>
+			<if test="ljibinName != null">
+				and jiabin_name like #{ljibinName}
+			</if>
+		</where>
+		<if test="limitBegin != null">
+			<if test="limitSize !=null">
+				limit #{limitBegin},#{limitSize}
+			</if>
+			<if test="limitSize ==null">
+				limit #{limitBegin},10
+			</if>
+		</if>
+	</select>
+	<select id="searchJiabin" parameterType="map" resultType="map">
+		select *
+		from jiabin
+		<where>
+		<if test="jiabinFlag !=null">
+		and (jiabin_flag like #{jiabinFlag})
+		</if>
+		<if test="jiabinFlag ==null">
+		and jiabin_flag =1
+		</if>
+			<if test="jiabinName != null">
+				and (jiabin_name like #{jiabinName})
+			</if>
+		</where>
+	</select>
+	<update id="updateJiabin" parameterType="map">
+		update jiabin
+		<set>
+			<if test="jiabinFlag!=null">
+				jiabin_flag = #{jiabinFlag},
+			</if>
+			<if test="jiabinName!=null">
+				jiabin_name = #{jiabinName},
+			</if>
+			<if test="jiabinLingyu!=null">
+				jiabin_lingyu=#{jiabinLingyu},
+			</if>
+			<if test="jiabinJigou!=null">
+				jiabin_jigou=#{jiabinJigou},
+			</if>
+			<if test="jiabinJianjie!=null">
+				jiabin_jianjie=#{jiabinJianjie},
+			</if>
+			<if test="jiabinCanyuHuodong != null">
+				jiabin_canyuhuodong=#{jiabinCanyuHuodong},
+			</if>
+			<if test="jiabinZhicheng!= null">
+				jiabin_zhicheng=#{jiabinZhicheng},
+			</if>
+			<if test="jiabinZhaopian!= null">
+				jiabin_zhaopian=#{jiabinZhaopian},
+			</if>
+			<if test="jiabinZhiwu!= null">
+				jiabin_zhiwu=#{jiabinZhiwu},
+			</if>
+		</set>
+		where jiabin_id=#{jiabinId}
+	</update>
+	<insert id="insertJiabin">
+		insert into jiabin
+		(jiabin_name,jiabin_lingyu,jiabin_jigou,jiabin_jianjie,jiabin_canyuhuodong,jiabin_zhicheng,jiabin_zhaopian,jiabin_zhiwu)
+		values
+		(#{jiabinName},#{jiabinLingyu},#{jiabinJigou},#{jiabinJianjie},#{jiabinCanyuHuodong},#{jiabinZhicheng},#{jiabinZhaopian},#{jiabinZhiwu})
+	</insert>
+	<delete id="deleteJiabin">
+		delete from jiabin where jiabin_id=#{jiabinId}
+	</delete>
+	<select id="count" parameterType="map" resultType="map">
+		select count(*) counter from jiabin where jiabin_flag>0
+		<if test="jiabinName!=null">
+			and jiabin_name=#{jiabinName}
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="agencyMapper">
+<!-- 按条件查询机构 -->
+	<select id="queryAgency" parameterType="map" resultType="map">
+		select *
+		from   jigou
+		<where>
+			jigou_flag=1
+			<if test="jigouJuese != null">
+				and jigou_juese=#{jigouJuese}
+			</if>
+			<if test="jigouId != null">
+				and jigou_id=#{jigouId}
+			</if>
+		</where>
+	</select>
+
+</mapper>

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+		<script type="text/javascript" src="layer/layer/layer.js"></script>
+		<style>
+			.table-custome {
+				position: relative;
+				width: 100%;
+				height: 480px;
+			  /*  margin: 100px 230px;*/
+				/*border: 1px solid black;*/
+				overflow: hidden;
+			}
+			.table{
+				position: absolute;
+				top:55px;
+			}
+			.table th,
+			.table td {
+				text-align: center;
+				height: 38px;
+			}
+			
+			tr:hover {
+				background-color: aliceblue;
+			}
+			
+			a:hover {
+				cursor: pointer;
+			}
+			.search-big{
+				/*background: cornflowerblue;*/
+				height: 50px;
+				width: 600px;
+				position:absolute;
+				right: 10px;
+			}
+			.search{
+				position: absolute;
+				top: 10px;
+				right: 10px;
+			}
+			.search input:first-child{
+				width: 360px;			
+				}
+			.search input{
+				height: 30px;
+				font-size: 14px;
+			}
+		</style>
+		<script>
+			function openhtml() {
+				layer.open({
+					type: 2,
+					title: false,
+					closeBtn: 1, //不显示关闭按钮
+					shade: [0],
+					offset:['10px',''],
+//					maxmin: true, //开启最大化最小化按钮
+					area: ['893px', '600px'],
+					content: 'nmsq-table.html'
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<h1>欢迎进入长白山学术论坛后台管理系统</h1>
+        
+	</body>
+
+</html>

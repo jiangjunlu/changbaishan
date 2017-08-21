@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="newsMapper">
+<!-- 查询所有嘉宾 -->
+	<select id="queryNews" parameterType="map" resultType="map">
+		select *
+		from   xinwen
+		<where>
+			xinwen_flag=1
+		
+		</where>
+	</select>
+
+</mapper>

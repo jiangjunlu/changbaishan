@@ -1,0 +1,112 @@
+package cn.edu.cust.ctrls;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import cn.edu.cust.srvs.impl.HuiYiSrv;
+import cn.edu.cust.srvs.impl.JiGouSrv;
+
+@Controller
+@RequestMapping(value="/huiyi")
+public class HuiYiCtrl {
+	@Resource(name="huiyiSrv")
+	private HuiYiSrv huiyiSrv;
+	@Resource(name="jigouSrv")
+	private JiGouSrv jigouSrv;
+	
+	/**
+	 * 
+	 * @return all meeting information,and include overdue meetings
+	 */
+	@RequestMapping(value="list")
+	public ModelAndView getList(HttpServletRequest request){
+		ModelAndView mv =new ModelAndView();
+		Map paraMap=new HashMap();
+		try {
+			String paraPage=request.getParameter("p");
+			int page=1;
+			if(paraPage!=null &&!"".equals(paraPage)){
+				page=Integer.parseInt(paraPage);
+			}
+			int count=huiyiSrv.count(paraMap);
+			int pageSize=10;
+			int pages=(count-1)/pageSize+1;
+			if(page<1){
+				page=1;
+			}else if(page>pages){
+				page=pages;
+			}
+			int limitBegin=(page-1)*pageSize;
+			paraMap.put("limitBegin", limitBegin);
+			Map result=huiyiSrv.getList(paraMap);
+			String resultType=(String)result.get("result");
+			List list=(List)result.get("list");
+			mv.addObject("resultType", resultType);
+			mv.addObject("list", list);
+			mv.addObject("pages", pages);
+			mv.addObject("page", page);
+			mv.setViewName("huiyi-list");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mv;
+	}
+	/**
+	 * 
+	 * @return a meeting all information by id
+	 */
+	@RequestMapping(value="xq")
+	public ModelAndView getDetail(HttpServletRequest request){
+		ModelAndView mv =new ModelAndView();
+		Map paraMap=new HashMap();
+		int id=Integer.parseInt(request.getParameter("id"));
+		int page=Integer.parseInt(request.getParameter("p"));
+		paraMap.put("huiyiId", id);
+		try {
+			Map detail=huiyiSrv.findHuiYi(paraMap);
+			List jigou=(List)jigouSrv.getList(null).get("list");//query all jigou
+			String[] zhubanfang=null;
+			String[] xiebanfang=null;
+			String[] laibanfang=null;
+			if(detail.get("huiyi_zhubanfang")!=null){
+				zhubanfang=detail.get("huiyi_zhubanfang").toString().split(" ");
+			}
+			List zbf= queryJigou(zhubanfang);
+			detail.remove("huiyi_zhubanfang");
+			if(detail.get("huiyi_laibanfang")!=null){
+				laibanfang=detail.get("huiyi_laibanfang").toString().split(" ");
+			}
+			List lbf=queryJigou(laibanfang);
+			detail.remove("huiyi_laibanfang");
+			if(detail.get("huiyi_xiebanfang")!=null){
+				xiebanfang=detail.get("huiyi_xiebanfang").toString().split(" ");
+			}
+			List xbf=queryJigou(xiebanfang);
+			detail.remove("huiyi_xiebanfang");
+			detail.put("huiyi_zhubanfang", zbf);
+			detail.put("huiyi_xiebanfang", xbf);
+			detail.put("huiyi_laibanfang", lbf);
+			mv.addObject("hy",detail);
+			mv.addObject("p",page);
+			mv.addObject("jigou",jigou);
+			mv.addObject("tableType","update");
+			mv.setViewName("huiyi-table");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="del")
+	public ModelAndView deleteMeeting(HttpServletRequest request){
+		ModelAndView mv =new ModelAndView();
+		int

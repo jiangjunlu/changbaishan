@@ -1,0 +1,451 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/index.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/academicBBSparticipants.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/style.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/index.js"></script>
+<title>长白山学术论坛会议</title>
+</head>
+<c:if test="${empty meetingInfo && empty guestInfo}">
+	<script type="text/javascript">
+			window.onload=function (){
+				location.href="<%=request.getContextPath()%>/allInfo/readIndexInfo";
+		};
+	</script>
+</c:if>
+<body>
+	<!-- 回到首部的猫链接 -->
+	<a href="top"></a>
+	<!-- 背景图层 -->
+	<div class="video-moban">
+		<video autoplay loop src="<%=request.getContextPath()%>/file.mp4"
+			class="video"></video>
+	</div>
+	<!-- 条条 -->
+	<div class="din"
+		style="height: 58px; font-size: 20px; line-height: 58px;">
+		<a href="#" class="a1">首页/</a>
+		<a href="<%=request.getContextPath()%>/allInfo/moreMeeting" class="a1">学术论坛会议/</a>
+		<a href="<%=request.getContextPath()%>/allInfo/queryPa" class="a1">学术社区/</a>
+	</div>
+	<!-- part-one -->
+	<div class="b2">
+		<p class="one-p1">长白山</p>
+		<div class="one-div1">长白山学术论坛欢迎您的莅临</div>
+		<p class="one-p2">学术论坛</p>
+	</div>
+	<!-- part-two -->
+	<div class="b3">
+		<span class="tow-span1">学术论坛会议</span>
+		<!-- 搜索框 -->
+		<div class="search" id="fieldsearch">
+			<form action="<%=request.getContextPath()%>/search/searchGo"
+				method="post">
+				<input type="text" class="box inputText" name="s"
+					onkeyup="selectItem(this.value, event)" id="txtKeyword"
+					placeholder="请输入要搜索的主题" /> <input type="submit" value="GO!"
+					class="search-button" />
+				<ul id="ulItems"></ul>
+			</form>
+		</div>
+		<!-- start学术论坛会议主题部分 -->
+		<div class="two-waibu">
+			<!-- 控制会议主题部分左右的按钮 -->
+			<div>
+				<a class="left carousel-control" href="#myCarousel"
+					data-slide="prev"> <img
+					src="<%=request.getContextPath()%>/img/icon_left.png" alt=""
+					class="img1">
+				</a> <a class="right carousel-control" href="#myCarousel"
+					data-slide="next"> <img
+					src="<%=request.getContextPath()%>/img/icon_right.png" alt=""
+					class="img2">
+				</a>
+			</div>
+
+			<!-- 左右滑动的内容部分-->
+			<div class="carousel slide" id="myCarousel" data-ride="carousel"
+				data-interval="false" data-pause="hover" data-wrap="false">
+				<!-- 轮播（Carousel）指标 -->
+				<ol class="carousel-indicators" id="myCarousel-css">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<c:forEach items="${meetingInfo[0] }" var="huiyi">
+							<div class="teo">
+								<div class="two-1">
+									<a
+										href="<%=request.getContextPath()%>/allInfo/meetingDetail?id=${huiyi.huiyi_id}"
+										class="two-a1"> <c:if test="${empty huiyi.zhongwen_name}">
+											<c:if test="${empty huiyi.yingwen_name}">
+													暂无主题
+												</c:if>
+											<c:if test="${!empty huiyi.yingwen_name}">
+													${huiyi.yingwen_name}
+												</c:if>
+										</c:if> <c:if test="${!empty huiyi.zhongwen_name}">
+												${huiyi.zhongwen_name }
+											</c:if>
+									</a>
+								</div>
+								<div class="two-2">
+									<ul class="two-ul">
+										<li class="two-p">
+											<p>时间</p>
+											<p>${fn:substring(huiyi.zhaikai_time,0,10) }</p>
+											<!-- <p>-</p> -->
+										<%-- 	<p>${fn:substring(huiyi.jieshu_time,0,10) }</p> --%>
+										</li>
+										<li class="two-p">
+											<p>地点</p>
+											<p>${huiyi.huiyi_didian }</p>
+										</li>
+										<li class="two-p">
+											<p>举办单位</p>
+											<p>${huiyi.huiyi_didian }</p>
+										</li>
+										<li class="two-p">
+											<p>内容简介</p>
+											<p class="p4">${huiyi.huiyi_zhaiyao }</p>
+										</li>
+									</ul>
+									<a
+										href="<%=request.getContextPath()%>/participant/setInfo?id=${huiyi.huiyi_id}"
+										class="two-mma">快速注册</a>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					<c:forEach items="${meetingInfo }" var="hys" begin="1">
+						<div class="item">
+							<c:forEach items="${hys }" var="huiyi">
+								<div class="teo">
+									<div class="two-1">
+										<a
+											href="<%=request.getContextPath()%>/allInfo/meetingDetail?id=${huiyi.huiyi_id}"
+											class="two-a1">${huiyi.zhongwen_name}<br>${huiyi.yingwen_name
+											}
+										</a>
+									</div>
+									<div class="two-2">
+										<ul class="two-ul">
+											<li class="two-p">
+												<p>时间</p>
+												<p>${huiyi.zhaikai_time }-${huiyi.jieshu_time }</p>
+											</li>
+											<li class="two-p">
+												<p>地点</p>
+												<p>${huiyi.huiyi_didian }</p>
+											</li>
+											<li class="two-p">
+												<p>举办单位</p>
+												<p>${huiyi.huiyi_didian }</p>
+											</li>
+											<li class="two-p">
+												<p>内容简介</p>
+												<p class="p4">${huiyi.huiyi_zhaiyao }</p>
+											</li>
+										</ul>
+										<a href="<%=request.getContextPath()%>/html/zhuce.html"
+											class="two-mma">快速注册</a>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			<!--会议内容 结束  -->
+		</div>
+		<!--会议内容、左右箭头 结束  -->
+		<div class="two-span2">
+			<a href="<%=request.getContextPath()%>/html/huiyi.html">更多会议</a>
+		</div>
+	</div>
+	<!-- end学术论坛会议部分 -->
+	<!-- 学术论坛参与者  白色背景的div -->
+	<div>
+		<div id="academic-div"></div>
+		<div id="academic-divs">
+			<!--字体的背景div  -->
+			<div class="academic-div1">
+				<h1 class="academic-h1">学术论坛参与者</h1>
+			</div>
+			<!-- 图片文字的div1 -->
+			<!-- start论坛会议的主要参加者名单部分 -->
+			<div class="academic-div2">
+				<div class="carousel slide" id="myCarousel1" data-ride="carousel"
+					data-interval="5000" data-pause="hover" data-wrap="true">
+					<!-- 轮播（Carousel）指标 -->
+					<ol class="carousel-indicators" id="myCarousel-css1">
+						<li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="item active">
+							<ul class="imglist">
+								<c:forEach items="${guestInfo[0] }" var="jiabin">
+									<li><img src="${jiabin.jiabin_zhaopian }" /> <span>
+											<b class="textname">${jiabin.jiabin_name }</b> <b
+											class="textjob">${jiabin.jiabin_zhiwu }</b>
+									</span></li>
+								</c:forEach>
+							</ul>
+						</div>
+						<c:forEach items="${guestInfo }" begin="1" var="jbs">
+							<div class="item">
+								<ul class="imglist">
+									<c:forEach items="${jbs }" var="jiabin">
+										<li><img src="${jiabin.jiabin_zhaopian }" /> <span>
+												<b class="textname">${jiabin.jiabin_name }</b> <b
+												class="textjob">${jiabin.jiabin_zhiwu }</b>
+										</span></li>
+									</c:forEach>
+								</ul>
+							</div>
+						</c:forEach>
+					</div>
+
+				</div>
+				<!-- 包含轮播按钮  结束 -->
+			</div>
+			<!-- 学术论坛参与者部分结束 -->
+		</div>
+	</div>
+
+	<!-- end论坛会议的主要参加者名单部分 -->
+	<!-- part4 -->
+	<div class="sjap-zong">
+		<div class="sjap-div1">
+			<h1 cla<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/index.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/academicBBSparticipants.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/style.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/index.js"></script>
+<title>长白山学术论坛会议</title>
+</head>
+<c:if test="${empty meetingInfo && empty guestInfo}">
+	<script type="text/javascript">
+			window.onload=function (){
+				location.href="<%=request.getContextPath()%>/allInfo/readIndexInfo";
+		};
+	</script>
+</c:if>
+<body>
+	<!-- 回到首部的猫链接 -->
+	<a href="top"></a>
+	<!-- 背景图层 -->
+	<div class="video-moban">
+		<video autoplay loop src="<%=request.getContextPath()%>/file.mp4"
+			class="video"></video>
+	</div>
+	<!-- 条条 -->
+	<div class="din"
+		style="height: 58px; font-size: 20px; line-height: 58px;">
+		<a href="#" class="a1">首页/</a>
+		<a href="<%=request.getContextPath()%>/allInfo/moreMeeting" class="a1">学术论坛会议/</a>
+		<a href="<%=request.getContextPath()%>/allInfo/queryPa" class="a1">学术社区/</a>
+	</div>
+	<!-- part-one -->
+	<div class="b2">
+		<p class="one-p1">长白山</p>
+		<div class="one-div1">长白山学术论坛欢迎您的莅临</div>
+		<p class="one-p2">学术论坛</p>
+	</div>
+	<!-- part-two -->
+	<div class="b3">
+		<span class="tow-span1">学术论坛会议</span>
+		<!-- 搜索框 -->
+		<div class="search" id="fieldsearch">
+			<form action="<%=request.getContextPath()%>/search/searchGo"
+				method="post">
+				<input type="text" class="box inputText" name="s"
+					onkeyup="selectItem(this.value, event)" id="txtKeyword"
+					placeholder="请输入要搜索的主题" /> <input type="submit" value="GO!"
+					class="search-button" />
+				<ul id="ulItems"></ul>
+			</form>
+		</div>
+		<!-- start学术论坛会议主题部分 -->
+		<div class="two-waibu">
+			<!-- 控制会议主题部分左右的按钮 -->
+			<div>
+				<a class="left carousel-control" href="#myCarousel"
+					data-slide="prev"> <img
+					src="<%=request.getContextPath()%>/img/icon_left.png" alt=""
+					class="img1">
+				</a> <a class="right carousel-control" href="#myCarousel"
+					data-slide="next"> <img
+					src="<%=request.getContextPath()%>/img/icon_right.png" alt=""
+					class="img2">
+				</a>
+			</div>
+
+			<!-- 左右滑动的内容部分-->
+			<div class="carousel slide" id="myCarousel" data-ride="carousel"
+				data-interval="false" data-pause="hover" data-wrap="false">
+				<!-- 轮播（Carousel）指标 -->
+				<ol class="carousel-indicators" id="myCarousel-css">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<c:forEach items="${meetingInfo[0] }" var="huiyi">
+							<div class="teo">
+								<div class="two-1">
+									<a
+										href="<%=request.getContextPath()%>/allInfo/meetingDetail?id=${huiyi.huiyi_id}"
+										class="two-a1"> <c:if test="${empty huiyi.zhongwen_name}">
+											<c:if test="${empty huiyi.yingwen_name}">
+													暂无主题
+												</c:if>
+											<c:if test="${!empty huiyi.yingwen_name}">
+													${huiyi.yingwen_name}
+												</c:if>
+										</c:if> <c:if test="${!empty huiyi.zhongwen_name}">
+												${huiyi.zhongwen_name }
+											</c:if>
+									</a>
+								</div>
+								<div class="two-2">
+									<ul class="two-ul">
+										<li class="two-p">
+											<p>时间</p>
+											<p>${fn:substring(huiyi.zhaokai_time,0,10) }</p>
+											<p>-</p>
+											<p>${fn:substring(huiyi.jieshu_time,0,10) }</p>
+										</li>
+										<li class="two-p">
+											<p>地点</p>
+											<p>${huiyi.huiyi_didian }</p>
+										</li>
+										<li class="two-p">
+											<p>举办单位</p>
+											<p>${huiyi.huiyi_didian }</p>
+										</li>
+										<li class="two-p">
+											<p>内容简介</p>
+											<p class="p4">${huiyi.huiyi_zhaiyao }</p>
+										</li>
+									</ul>
+									<a
+										href="<%=request.getContextPath()%>/participant/setInfo?id=${huiyi.huiyi_id}"
+										class="two-mma">快速注册</a>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					<c:forEach items="${meetingInfo }" var="hys" begin="1">
+						<div class="item">
+							<c:forEach items="${hys }" var="huiyi">
+								<div class="teo">
+									<div class="two-1">
+										<a
+											href="<%=request.getContextPath()%>/allInfo/meetingDetail?id=${huiyi.huiyi_id}"
+											class="two-a1">${huiyi.zhongwen_name}<br>${huiyi.yingwen_name
+											}
+										</a>
+									</div>
+									<div class="two-2">
+										<ul class="two-ul">
+											<li class="two-p">
+												<p>时间</p>
+												<p>${huiyi.zhaikai_time }-${huiyi.jieshu_time }</p>
+											</li>
+											<li class="two-p">
+												<p>地点</p>
+												<p>${huiyi.huiyi_didian }</p>
+											</li>
+											<li class="two-p">
+												<p>举办单位</p>
+												<p>${huiyi.huiyi_didian }</p>
+											</li>
+											<li class="two-p">
+												<p>内容简介</p>
+												<p class="p4">${huiyi.huiyi_zhaiyao }</p>
+											</li>
+										</ul>
+										<a href="<%=request.getContextPath()%>/html/zhuce.html"
+											class="two-mma">快速注册</a>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			<!--会议内容 结束  -->
+		</div>
+		<!--会议内容、左右箭头 结束  -->
+		<div class="two-span2">
+			<a href="<%=request.getContextPath()%>/html/huiyi.html">更多会议</a>
+		</div>
+	</div>
+	<!-- end学术论坛会议部分 -->
+	<!-- 学术论坛参与者  白色背景的div -->
+	<div>
+		<div id="academic-div"></div>
+		<div id="academic-divs">
+			<!--字体的背景div  -->
+			<div class="academic-div1">
+				<h1 class="academic-h1">学术论坛参与者</h1>
+			</div>
+			<!-- 图片文字的div1 -->
+			<!-- start论坛会议的主要参加者名单部分 -->
+			<div class="academic-div2">
+				<div class="carousel slide" id="myCarousel1" data-ride="carousel"
+					data-interval="5000" data-pause="hover" data-wrap="true">
+					<!-- 轮播（Carousel）指标 -->
+					<ol class="carousel-indicators" id="myCarousel-css1">
+						<li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="item active">
+							<ul class="imglist">
+								<c:forEach items="${guestInfo[0] }" var="jiabin">
+									<li><img src="${jiabin.jiabin_zhaopian }" /> <span>
+											<b class="textname">${jiabin.jiabin_name }</b> <b
+											class="textjob">${jiabin.jiabin_zhiwu }</b>
+									</span></li>
+								</c:forEach>
+							</ul>
+						</div>
+						<c:forEach items="${guestInfo }" begin="1" var="jbs">
+							<div class="item">
+								<ul class="imglist">
+									<c:forEach items="${jbs }" var="jiabin">
+										<li><img src="${jiabin.jiabin_zhaopian }" /> <span>
+												<b class="textname">${jiabin.jiabin_name }</b> <b
+												class="textjob">${jiabin.jiabin_zhiwu }</b>
+										</span></li>
+									</c:forEach>
+	

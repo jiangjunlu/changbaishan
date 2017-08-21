@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace自定义名称，必须唯一，为了保证唯一，一般与文件同名 -->
+<mapper namespace="meetingMapper">
+<!-- 查询所有会议 -->
+	<select id="queryMeeting" parameterType="map" resultType="map">
+		select *
+		from  huiyi
+		<where>
+			huiyi_flag=1 and date(zhaokai_time) > DATE_SUB(CURDATE(), INTERVAL 900 DAY)  
+			<!-- 新家一条要求可见的会议室是审核通过的  -->
+			and huiyi_review=1
+			<if test="zhaokaiTime != null">
+				and zhaokai_time=#{zhaokaiTime}
+			</if>
+			<if test="index != null">
+				and date(zhaokai_time) > DATE_SUB(CURDATE(), INTERVAL 0 DAY)  
+			</if>
+			<if test="huiyiId != null">
+				and huiyi_id=#{huiyiId}
+			</if>
+			
+			<if test="huiyiZhuangtai != null">
+				and huiyi_zhuangtai=#{huiyiZhuangtai}
+			</if>
+		</where>
+		order by huiyi_zhuangtai,zhaokai_time desc
+		
+	</select>
+	<select id="queryMeetingTitleByYingwenName" parameterType="map" resultType="map">
+		select huiyi_id,yingwen_name
+		from huiyi
+		<where>
+			<if test="name != null">
+				and yingwen_name like #{name}
+			</if>
+		</where>
+	</select>
+	<select id="queryMeetingTitleByZhongwenName" parameterType="map" resultType="map">
+		select huiyi_id,zhongwen_name
+		from huiyi
+		<where>
+			<if test="name != null">
+				and zhongwen_name like #{name}
+			</if>
+		</where>
+	</select>
+</mapper>

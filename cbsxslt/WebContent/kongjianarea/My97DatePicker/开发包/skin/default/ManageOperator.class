@@ -1,0 +1,144 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset=utf-8>
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/index.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/academicBBSparticipants.css" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+
+
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/index.js"></script>
+	<title>长白山学术论坛会议</title>
+</head>
+<body>
+	<!-- 回到首部的猫链接 -->
+	<a href="top"></a>
+<!-- 背景图层 -->
+	<div class="video-moban">
+			<video autoplay loop src="<%=request.getContextPath()%>/file.mp4" class="video"></video>
+		</div>
+		<!-- 条条 -->
+		<div class="din"  style="height:58px;font-size:20px;line-height:58px;">
+			<a href="<%=request.getContextPath()%>/html/index.html" class="a1" >首页/</a>
+			<a href="<%=request.getContextPath()%>/html/huiyi.html" class="a1">学术论坛会议/</a>
+			<a href="<%=request.getContextPath()%>/html/luntan.html" class="a1">应用论坛/</a>
+		</div>
+		<!-- part-one -->
+		<div class="b2">
+			<p class="one-p1">长白山</p>
+			<div class="one-div1">
+				长白山学术论坛欢迎您的莅临；
+			</div>
+			<p class="one-p2">学术论坛</p>
+		</div>
+	<!-- part-two -->
+		<div class="b3">
+			<span class="tow-span1">学术论坛会议</span>
+			<!-- 搜索框 -->
+	   	 	<div class="search" id="searchdiv">
+	        	 <input type="text" class="box inputText" name="s" onkeyup="selectItem(this.value, event)" id="txtKeyword" placeholder="请输入要搜索的主题" />
+	        	 <input type="button" value="GO!" class="search-button"/>
+    			<ul id="ulItems" ></ul>
+	    	</div>
+			<!-- start学术论坛会议主题部分 -->
+					<div class="two-waibu">	
+						<!-- 控制会议主题部分左右的按钮 -->
+						<div>
+							<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+								<img src="<%=request.getContextPath()%>/img/icon_left.png" alt="" class="img1">
+							</a>	
+						    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+						    	<img src="<%=request.getContextPath()%>/img/icon_right.png" alt="" class="img2">
+						    </a>
+						</div>
+
+		           		<!-- 左右滑动的内容部分-->
+		           		<div class="carousel slide" id="myCarousel" data-ride="carousel" data-interval="false" data-pause="hover" data-wrap="false">
+		           			<!-- 轮播（Carousel）指标 -->
+						    <ol class="carousel-indicators" id ="myCarousel-css">
+						        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						        <li data-target="#myCarousel" data-slide-to="1"></li>
+						        <li data-target="#myCarousel" data-slide-to="2"></li>
+						    </ol> 
+		           			<div class="carousel-inner">
+					           	<div class="item active">
+						            <div class="teo">
+										<div class="two-1">
+											<a href="<%=request.getContextPath()%>/html/xiangqing.html" class="two-a1">我是会议的主题</a>
+										</div>
+										<div class="two-2">
+											<ul class="two-ul">
+												<li class="two-p">
+											    <p>时间</p>
+												<p>2016.12.20-2016.12.25</p>
+												</li>
+												<li class="two-p">
+											    <p>地点</p>
+												<p>吉林省长春市长春理工大学南校区</p>
+												</li>
+												<li class="two-p">
+											    <p>举办单位</p>
+												<p>吉林省长春市长春理工大学南校区</p>
+												</li>
+												<li class="two-p">
+											    <p>内容简介</p>
+												<p class="p4" >吉林省长春市长春理工大学南校区吉</p>
+												</li>
+											</ul>
+											<a href="<%=request.getContextPath()%>/html/zhuce.html" class="two-mma">快速注册</a>
+							     		</div>
+									</div>
+									<div class="teo">
+											<div class="two-1"><a href="<%=request.getContextPath()%>/html/xiangqing.html" class="two-a1">我是会议的主题</a></div>
+											<div class="two-2">
+											<ul class="two-ul">
+												<li class="two-p">
+											    <p>时间</p>
+												<p>2016.12.20-2016.12.25</p>
+												</li>
+												<li class="two-p">
+											    <p>地点</p>
+												<p>吉林省长春市长春理工大学南校区</p>
+												</li>
+												<li class="two-p">
+											    <p>举办单位</p>
+												<p>吉林省长春市长春理工大学南校区</p>
+												</li>
+												<li class="two-p">
+											    <p>内容简介</p>
+												<p class="p4">吉林省长春市长春理工佛山市事实上事实上事实上事实上事
+												春理工佛山吉林省长春市长春理工佛山市事实上事实上事实市事实上事实上事实理工佛山吉林省长春市</p>
+												</li>
+											</ul>
+													<a href="<%=request.getContextPath()%>/html/zhuce.html" class="two-mma">快速注册</a>
+											</div>
+									</div>
+									<div class="teo">
+											<div class="two-1"><a href="<%=request.getContextPath()%>/html/xiangqing.html" class="two-a1">我是会议的主题</a></div>
+											<div class="two-2">
+											<ul class="two-ul">
+												<li class="two-p">
+											    <p>时间</p>
+												<p>2016.12.20-2016.12.25</p>
+												</li>
+												<li class="two-p">
+											    <p>地点</p>
+												<p>吉林省长春市长春理工大学南校区</p>
+												</li>
+												<li class="two-p">
+											    <p>举办单位</p>
+												<p>吉林省长春市长春理工大学南校区</p>
+									
+												</li>
+												<li class="two-p">
+											    <p>内容简介</p>
+												<p class="p4">校区吉dsdsdsdsddssss春市长春理工大学南
+												理理工大学南校区吉理工大学南校</p>
+												</li>
+											</ul>
+			
